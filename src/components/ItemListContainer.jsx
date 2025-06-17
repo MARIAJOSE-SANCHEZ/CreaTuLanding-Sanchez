@@ -23,7 +23,7 @@ const ItemListContainer = () => {
   return (
     <div>
       <h1>{categoryId ? `Categoría: ${categoryId}` : 'Catálogo de productos'}</h1>
-      <ItemList products={products} />
+      <ItemList items={products} />
     </div>
   )
 }
