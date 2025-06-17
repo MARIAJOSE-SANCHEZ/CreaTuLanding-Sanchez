@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const mockProducts = [
-  { id: '1', name: 'Producto A', description: 'Descripción del Producto A' },
-  { id: '2', name: 'Producto B', description: 'Descripción del Producto B' },
+  { id: '1', name: 'Remera', description: 'Remera de algodón con diseño moderno.' },
+  { id: '2', name: 'Celular', description: 'Smartphone de última generación.' },
 ];
 
 const getProductById = (id) => {
@@ -22,15 +22,24 @@ const ItemDetailContainer = () => {
     getProductById(itemId).then(setProduct);
   }, [itemId]);
 
-  if (!product) return <p style={{ padding: '2rem' }}>Cargando...</p>;
+  if (!product) return <p style={{ padding: '2rem' }}>Cargando detalle...</p>;
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div style={{ padding: '2rem', border: '1px solid #ddd', borderRadius: '8px' }}>
       <h2>{product.name}</h2>
       <p>{product.description}</p>
-      <p>Agregar al carrito (futura funcionalidad)</p>
+      <button style={{
+        marginTop: '1rem',
+        padding: '0.5rem 1rem',
+        background: '#6200ea',
+        color: 'white',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer'
+      }}>Agregar al carrito</button>
     </div>
   );
 };
 
 export default ItemDetailContainer;
+

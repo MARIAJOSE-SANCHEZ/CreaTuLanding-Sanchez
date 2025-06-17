@@ -9,7 +9,6 @@ const NavBar = () => {
       <ul style={styles.menu}>
         <li><Link to="/category/ropa" style={styles.link}>Ropa</Link></li>
         <li><Link to="/category/tecnologia" style={styles.link}>Tecnología</Link></li>
-        {/* Agregá más categorías aquí si querés */}
       </ul>
       <CartWidget />
     </nav>
@@ -22,13 +21,14 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: '1rem 2rem',
-    backgroundColor: '#333',
+    backgroundColor: '#6200ea',
     color: 'white',
   },
   logo: {
     fontSize: '1.5rem',
     textDecoration: 'none',
     color: 'white',
+    fontWeight: 'bold',
   },
   menu: {
     listStyle: 'none',
@@ -38,8 +38,10 @@ const styles = {
   link: {
     textDecoration: 'none',
     color: 'white',
+    fontWeight: '500',
   },
 };
 
 export default NavBar;
+
 
