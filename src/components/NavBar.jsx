@@ -1,15 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
-function NavBar() {
+const NavBar = () => {
   return (
-    <nav style={{ padding: '1rem', background: '#eee' }}>
-      <Link to="/" style={{ marginRight: '1rem' }}>Inicio</Link>
-      <Link to="/categoria/ropa" style={{ marginRight: '1rem' }}>Ropa</Link>
-      <Link to="/categoria/calzado" style={{ marginRight: '1rem' }}>Calzado</Link>
-      <Link to="/categoria/accesorios">Accesorios</Link>
+    <nav className="navbar">
+      <h2 className="logo">Mi Tienda</h2>
+      <ul className="nav-links">
+        <li><Link to="/">Todos</Link></li>
+        <li><Link to="/category/categoria1">Categoría 1</Link></li>
+        <li><Link to="/category/categoria2">Categoría 2</Link></li>
+      </ul>
     </nav>
-  );
+  )
 }
 
-export default NavBar;
+export default NavBar
+
 
