@@ -9,13 +9,14 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<ItemListContainer />} />
-        <Route path="/category/:categoryId" element={<ItemListContainer />} />
+        <Route path="/" element={<ItemListContainer greeting="¡Bienvenido a nuestra tienda online!" />} />
+        <Route path="/categoria/:categoryId" element={<ItemListContainer greeting="Filtrado por categoría" />} />
         <Route path="/item/:itemId" element={<ItemDetailContainer />} />
-        <Route path="*" element={<h2 style={{ padding: '2rem' }}>Página no encontrada (404)</h2>} />
+        <Route path="*" element={<h2 style={{ padding: '2rem' }}>Página no encontrada 😓</h2>} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+

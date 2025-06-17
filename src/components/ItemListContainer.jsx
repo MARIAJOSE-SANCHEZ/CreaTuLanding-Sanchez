@@ -1,55 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import productos from '../data/productos';
 
-const mockProducts = [
-  { id: '1', name: 'Remera básica', category: 'ropa', image: 'https://via.placeholder.com/150' },
-  { id: '2', name: 'Campera de invierno', category: 'ropa', image: 'https://via.placeholder.com/150' },
-  { id: '3', name: 'Jeans clásicos', category: 'ropa', image: 'https://via.placeholder.com/150' },
-  { id: '4', name: 'Zapatillas urbanas', category: 'ropa', image: 'https://via.placeholder.com/150' },
-  { id: '5', name: 'Smartphone Galaxy A23', category: 'tecnologia', image: 'https://via.placeholder.com/150' },
-  { id: '6', name: 'Notebook Lenovo i5', category: 'tecnologia', image: 'https://via.placeholder.com/150' },
-  { id: '7', name: 'Auriculares inalámbricos', category: 'tecnologia', image: 'https://via.placeholder.com/150' },
-  { id: '8', name: 'Tablet 10” HD', category: 'tecnologia', image: 'https://via.placeholder.com/150' },
-];
-
-const getProducts = (categoryId) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      if (categoryId) {
-        resolve(mockProducts.filter(p => p.category === categoryId));
-      } else {
-        resolve(mockProducts);
-      }
-    }, 500);
-  });
-};
-
-const ItemListContainer = () => {
-  const { categoryId } = useParams();
+const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { categoryId } = useParams();
 
   useEffect(() => {
-    setLoading(true);
-    getProducts(categoryId).then(data => {
-      setItems(data);
-      setLoading(false);
+    const fetchData = new Promise((resolve) => {
+      setTimeout(() => {
+        if (categoryId) {
+          resolve(productos.filter(prod => prod.categoria === categoryId));
+        } else {
+          resolve(productos);
+        }
+      }, 1000);
     });
+
+    fetchData.then(setItems);
   }, [categoryId]);
 
-  if (loading) return <p style={{ padding: '2rem' }}>Cargando productos...</p>;
-
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1rem', padding: '2rem' }}>
-      {items.map(item => (
-        <div key={item.id} style={{ border: '1px solid #ddd', padding: '1rem', borderRadius: '8px' }}>
-          <img src={item.image} alt={item.name} style={{ width: '100%', borderRadius: '8px' }} />
-          <h4>{item.name}</h4>
-          <Link to={`/item/${item.id}`}>Ver detalle</Link>
-        </div>
-      ))}
-    </div>
+    <section style={{ padding: '2rem' }}>
+      <h2>{greeting}</h2>
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        {items.map((item) => (
+          <div key={item.id} style={{ border: '1px solid #ddd', padding: '1rem', width: '200px' }}>
+            <img src={item.imagen} alt={item.nombre} style={{ width: '100%' }} />
+            <h3>{item.nombre}</h3>
+            <p>${item.precio}</p>
+            <Link to={`/item/${item.id}`}>Ver detalle</Link>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 
 export default ItemListContainer;
+
